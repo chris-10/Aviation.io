@@ -3,17 +3,16 @@ package com.hydra.christendsouza.aviationio;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 public class Tabbed extends AppCompatActivity {
 
@@ -39,6 +38,7 @@ public class Tabbed extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -46,8 +46,22 @@ public class Tabbed extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        final int[] ICONS = new int[]{
+                R.drawable.ic_person_outline_black_24dp,
+                R.drawable.ic_group_add_black_24dp,
+                R.drawable.ic_chat_bubble_outline_black_24dp,
+                R.drawable.ic_sentiment_very_satisfied_black_24dp
+        };
 
+        //Get reference to your Tablayout
 
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(mViewPager);
+
+        tabLayout.getTabAt(0).setIcon(ICONS[0]);
+        tabLayout.getTabAt(1).setIcon(ICONS[1]);
+        tabLayout.getTabAt(2).setIcon(ICONS[2]);
+        tabLayout.getTabAt(3).setIcon(ICONS[3]);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,54 +99,7 @@ public class Tabbed extends AppCompatActivity {
     /**
      * A placeholder fragment containing a simple view.
      */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
 
-        public PlaceholderFragment() {
-        }
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            if(getArguments().getInt(ARG_SECTION_NUMBER)==1) {
-                View rootView = inflater.inflate(R.layout.fragment_tabbed, container, false);
-                return rootView;
-            }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)==2) {
-                View rootView = inflater.inflate(R.layout.fragment_connect, container, false);
-                return rootView;
-            }
-            else if(getArguments().getInt(ARG_SECTION_NUMBER)==3) {
-                View rootView = inflater.inflate(R.layout.fragment_chat, container, false);
-                return rootView;
-            }
-            else {
-                View rootView = inflater.inflate(R.layout.fragment_visual, container, false);
-                return rootView;
-            }
-        }
-    }
-
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
         public SectionsPagerAdapter(FragmentManager fm) {
@@ -141,14 +108,28 @@ public class Tabbed extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            switch(position)
+            {
+                case 0:
+                    layout.profile c=new layout.profile();
+                    return c;
+                case 1:
+                    layout.connect c2=new layout.connect();
+                    return c2;
+                case 2:
+                    layout.chat c3=new layout.chat();
+                    return c3;
+                case 3:
+                    layout.visual c4=new layout.visual();
+                    return c4;
+                default:
+                    return null;
+            }
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
+            // Show 4 total pages.
             return 4;
         }
 
