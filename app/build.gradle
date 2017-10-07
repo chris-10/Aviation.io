@@ -17,6 +17,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    repositories {
+        jcenter()
+    }
 }
 
 dependencies {
@@ -31,4 +34,19 @@ dependencies {
     compile 'com.android.support:support-v4:26.+'
     testCompile 'junit:junit:4.12'
     compile files('libs/universal-image-loader-1.9.5.jar')
+    compile files('libs/mobileservices/gson-2.2.2.jar')
+    compile files('libs/mobileservices/guava-17.0.jar')
+    compile files('libs/mobileservices/mobileservices-2.0.3.jar')
+    compile files('libs/mobileservices/mobileservices-2.0.3-javadoc.jar')
+    compile files('libs/mobileservices/mobileservices-2.0.3-sources.jar')
+    compile files('libs/notificationhubs/notification-hubs-0.3.jar')
+    compile files('libs/notificationhubs/notification-hubs-0.3-javadoc.jar')
+    compile files('libs/notificationhubs/notification-hubs-0.3-sources.jar')
+    compile files('libs/notifications/notifications-1.0.1.jar')
+    compile files('libs/notifications/notifications-1.0.1-javadoc.jar')
+    compile files('libs/notifications/notifications-1.0.1-sources.jar')
+    compile files('libs/okhttp-1.2.1-jar-with-dependencies.jar')
+    compile files('libs/mobileservices-2.0.3.jar')
+    compile files('libs/mobileservices-2.0.3-javadoc.jar')
+    compile files('libs/mobileservices-2.0.3-sources.jar')
 }
